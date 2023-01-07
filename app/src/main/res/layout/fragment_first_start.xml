@@ -13,61 +13,30 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_app"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/orderFromTextView"
-        style="@style/header_1"
-        android:layout_width="279dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/order_from_your_favourite_stores_or_vendors"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appIconImageView" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="280dp"
         android:layout_height="260dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/orderFromTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/appIconImageView" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/carouselNavigation"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_gravity="bottom"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager"
-        >
-
-        <ImageView
-            android:id="@+id/image1"
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:background="@drawable/item_carousel"
-            android:layout_marginRight="15dp"/>
-
-        <ImageView
-            android:id="@+id/image2"
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/item_carousel_selected" />
-
-        <ImageView
-            android:id="@+id/image3"
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:background="@drawable/item_carousel" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewPager"
+        app:tabIndicatorHeight="0dp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/nextButton"
@@ -78,6 +47,6 @@
         android:text="Next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carouselNavigation" />
+        app:layout_constraintTop_toBottomOf="@id/tabLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

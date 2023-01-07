@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8FBFF"
+    android:paddingHorizontal="21dp"
+    android:paddingVertical="34dp"
+    tools:context=".HomeFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="34dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/sidebarImageButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:src="@drawable/ic_sidebar_button"
+            app:layout_constraintEnd_toStartOf="@+id/deliveryLinearLayout"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/deliveryConstraintLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/sidebarImageButton">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/deliveryLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/deliveryTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delivery to"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/expandAddressTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_down"
+                    android:layout_marginLeft="10dp"
+                    app:layout_constraintStart_toEndOf="@id/deliveryTextView"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <TextView
+                android:id="@+id/addressTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lekki phase 1, Estate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/deliveryLinearLayout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageButton
+            android:id="@+id/profileImageButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toEndOf="@id/deliveryLinearLayout"
+            android:src="@drawable/ic_person"
+            back
+            />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <!--    <TextView-->
+    <!--        style="@style/header_1"-->
+    <!--        android:id="@+id/enjoyFoodTextView"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="40dp"-->
+    <!--        android:text="Enjoy Delicious food"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/deliveryLinearLayout" />-->
+
+    <!--        <include-->
+    <!--            app:layout_constraintTop_toBottomOf="@id/enjoyFoodTextView"-->
+    <!--            android:layout_marginTop="50dp"-->
+    <!--            layout="@layout/food_filter"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

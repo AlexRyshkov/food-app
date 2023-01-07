@@ -2,10 +2,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.food_app.CarouselItem
 import com.example.food_app.R
 
-class CarouselRVAdapter(private val carouselDataList: List<Int>) :
+class CarouselRVAdapter(private val carouselDataList: List<CarouselItem>) :
     RecyclerView.Adapter<CarouselRVAdapter.CarouselItemViewHolder>() {
 
     class CarouselItemViewHolder(view: View) : RecyclerView.ViewHolder(view)
@@ -17,8 +19,11 @@ class CarouselRVAdapter(private val carouselDataList: List<Int>) :
     }
 
     override fun onBindViewHolder(holder: CarouselItemViewHolder, position: Int) {
-        val imageView = holder.itemView.findViewById<ImageView>(R.id.itemImageView)
-        imageView.setImageResource(carouselDataList[position])
+        val item = carouselDataList[position]
+        val itemImageView = holder.itemView.findViewById<ImageView>(R.id.itemImageView)
+        val itemTextView = holder.itemView.findViewById<TextView>(R.id.itemTextView)
+        itemImageView.setImageResource(item.image)
+        itemTextView.text = item.text
     }
 
     override fun getItemCount(): Int {
