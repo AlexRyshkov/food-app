@@ -20,4 +20,16 @@
         android:id="@+id/restaurantFragment"
         android:name="com.example.food_app.presentation.restaurant.RestaurantFragment"
         android:label="RestaurantFragment" />
+    <fragment
+        android:id="@+id/firstStartFragment"
+        android:name="com.example.food_app.presentation.firstStartup.FirstStartFragment"
+        android:label="FirstStartFragment" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.food_app.presentation.signUp.SignUpFragment"
+        android:label="SignUpFragment" />
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.food_app.presentation.signIn.SignInFragment"
+        android:label="SignInFragment" />
 </navigation>

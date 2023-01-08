@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.food_app.rvAdapters.FoodRVAdapter
 import com.example.food_app.R
 import com.example.food_app.databinding.FragmentRestaurantBinding
+import com.example.food_app.rvAdapters.FoodRVAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

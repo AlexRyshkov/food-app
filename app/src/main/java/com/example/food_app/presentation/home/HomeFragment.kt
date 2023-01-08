@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.food_app.data.restaurant.Restaurant
 import com.example.food_app.databinding.FragmentHomeBinding
 import com.example.food_app.presentation.home.HomeViewModel
@@ -61,5 +62,10 @@ class HomeFragment : Fragment() {
         }
         binding.restaurantsCountTextView.text =
             "${homeViewModel.restaurants.value?.size} Restaurants"
+
+        binding.profileImageButton.setOnClickListener {
+            homeViewModel.signOut()
+            findNavController().navigate(R.id.signInFragment)
+        }
     }
 }

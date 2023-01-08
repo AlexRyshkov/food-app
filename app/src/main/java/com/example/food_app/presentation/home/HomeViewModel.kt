@@ -4,13 +4,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.animelist.domain.GetRestaurantsUseCase
+import com.example.animelist.domain.SignOutUserUseCase
 import com.example.food_app.data.restaurant.Restaurant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val getRestaurantsUseCase: GetRestaurantsUseCase) :
+class HomeViewModel @Inject constructor(
+    private val getRestaurantsUseCase: GetRestaurantsUseCase,
+    private val signOutUserUseCase: SignOutUserUseCase,
+ ) :
     ViewModel() {
     private val _restaurants = MutableLiveData<List<Restaurant>?>(null)
     val restaurants get() = _restaurants
@@ -20,5 +24,9 @@ class HomeViewModel @Inject constructor(private val getRestaurantsUseCase: GetRe
             val restaurants = getRestaurantsUseCase()
             _restaurants.value = restaurants
         }
+    }
+
+    fun signOut() {
+        signOutUserUseCase()
     }
 }
