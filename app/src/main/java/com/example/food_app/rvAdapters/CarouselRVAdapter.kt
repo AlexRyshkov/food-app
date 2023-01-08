@@ -1,11 +1,13 @@
+package com.example.food_app.rvAdapters
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.food_app.CarouselItem
 import com.example.food_app.R
+import com.example.food_app.presentation.firstStartup.CarouselItem
 
 class CarouselRVAdapter(private val carouselDataList: List<CarouselItem>) :
     RecyclerView.Adapter<CarouselRVAdapter.CarouselItemViewHolder>() {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingVertical="28dp"
-    tools:context=".MainActivity">
+    tools:context=".presentation.main.MainActivity">
 
     <ImageView
         android:id="@+id/appIconImageView"

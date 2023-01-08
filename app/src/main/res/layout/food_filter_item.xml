@@ -1,5 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/food_filter_item"
@@ -8,22 +8,25 @@
     android:paddingVertical="10dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
+        android:layout_width="67dp"
         android:layout_height="match_parent"
         android:background="@drawable/food_filter_item_inner"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="15dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/food_filter_icon1" />
+            android:id="@+id/foodFilterImageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/cheeseburger_filter" />
 
         <TextView
+            android:id="@+id/foodFilterTextView"
             style="@style/body_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pizza"
-            android:layout_marginTop="-20dp"/>
+            tools:text="Burger" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </FrameLayout>

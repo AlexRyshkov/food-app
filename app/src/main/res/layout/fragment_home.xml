@@ -94,13 +94,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat" />
 
-    <include
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/foodFilter"
-        layout="@layout/food_filter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/enjoyFoodTextView" />
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/enjoyFoodTextView">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/foodFilterRV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/food_filter_item" />
+    </androidx.core.widget.NestedScrollView>
 
     <TextView
         android:id="@+id/restaurantsCountTextView"
@@ -118,8 +127,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="6dp"
         android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@id/restaurantsCountTextView"
-        tools:layout_editor_absoluteX="36dp">
+        app:layout_constraintTop_toBottomOf="@id/restaurantsCountTextView">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/restaurantsRecyclerView"

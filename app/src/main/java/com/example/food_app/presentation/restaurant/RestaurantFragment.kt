@@ -7,104 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.food_app.FoodRVAdapter
+import androidx.navigation.fragment.findNavController
+import com.example.food_app.rvAdapters.FoodRVAdapter
 import com.example.food_app.R
-import com.example.food_app.data.food.Food
 import com.example.food_app.databinding.FragmentRestaurantBinding
 import dagger.hilt.android.AndroidEntryPoint
-
-val foodList = listOf(
-    Food(
-        1,
-        "Big cheese burger",
-        "No 10 opp lekki phase 1 bridge in sangotedo estate",
-        4.3,
-        5.0,
-        R.drawable.food_item_image,
-        1,
-    ),
-    Food(
-        2,
-        "Big cheese burger",
-        "No 10 opp lekki phase 1 bridge in sangotedo estate",
-        4.3,
-        5.0,
-        R.drawable.food_item_image,
-        1,
-    ),
-    Food(
-        3,
-        "Big cheese burger",
-        "No 10 opp lekki phase 1 bridge in sangotedo estate",
-        4.3,
-        5.0,
-        R.drawable.food_item_image,
-        1,
-    ),
-    Food(
-        4,
-        "Big cheese burger",
-        "No 10 opp lekki phase 1 bridge in sangotedo estate",
-        4.3,
-        5.0,
-        R.drawable.food_item_image,
-        1,
-    ),
-    Food(
-        5,
-        "Big cheese burger",
-        "No 10 opp lekki phase 1 bridge in sangotedo estate",
-        4.3,
-        5.0,
-        R.drawable.food_item_image,
-        1,
-    ),
-    Food(
-        6,
-        "Big cheese burger",
-        "No 10 opp lekki phase 1 bridge in sangotedo estate",
-        4.3,
-        5.0,
-        R.drawable.food_item_image,
-        1,
-    ),
-    Food(
-        7,
-        "Big cheese burger",
-        "No 10 opp lekki phase 1 bridge in sangotedo estate",
-        4.3,
-        5.0,
-        R.drawable.food_item_image,
-        1,
-    ),
-    Food(
-        8,
-        "Big cheese burger",
-        "No 10 opp lekki phase 1 bridge in sangotedo estate",
-        4.3,
-        5.0,
-        R.drawable.food_item_image,
-        1,
-    ),
-    Food(
-        9,
-        "Big cheese burger",
-        "No 10 opp lekki phase 1 bridge in sangotedo estate",
-        4.3,
-        5.0,
-        R.drawable.food_item_image,
-        1,
-    ),
-    Food(
-        10,
-        "Big cheese burger",
-        "No 10 opp lekki phase 1 bridge in sangotedo estate",
-        4.3,
-        5.0,
-        R.drawable.food_item_image,
-        1,
-    ),
-)
 
 @AndroidEntryPoint
 class RestaurantFragment : Fragment() {
@@ -115,7 +22,7 @@ class RestaurantFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRestaurantBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -125,11 +32,15 @@ class RestaurantFragment : Fragment() {
         binding.appBar.bringToFront()
         binding.restaurantScrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             binding.appBar.setBackgroundColor(
-                if (scrollY == 0) Color.TRANSPARENT else resources.getColor(
+                if (scrollY * resources.displayMetrics.density <= 250) Color.TRANSPARENT else resources.getColor(
                     R.color.white
                 )
             )
         }
-        binding.foodRecyclerView.adapter = FoodRVAdapter(foodList)
+        binding.foodRecyclerView.adapter =
+            FoodRVAdapter(restaurantViewModel.restaurant.value?.food!!)
+        binding.backImageButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }

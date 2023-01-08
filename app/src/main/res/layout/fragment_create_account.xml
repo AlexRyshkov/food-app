@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingVertical="28dp"
-        tools:context=".MainActivity">
+        tools:context=".presentation.main.MainActivity">
 
         <ImageView
             android:id="@+id/appIconImageView"
@@ -140,7 +140,7 @@
             app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEditText" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/loginButton"
+            android:id="@+id/signInButton"
             style="@style/ghostButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -45,12 +45,12 @@
 
         <ImageView
             android:id="@+id/starImageView"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginLeft="5dp"
             android:src="@drawable/ic_star"
             app:layout_constraintStart_toEndOf="@id/restaurantDeliveryTimeTextView"
-            app:layout_constraintTop_toTopOf="@id/restaurantDeliveryTimeTextView" />
+            app:layout_constraintBottom_toBottomOf="@id/restaurantDeliveryTimeTextView" />
 
         <TextView
             android:id="@+id/restaurantRatingTextView"
@@ -58,8 +58,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4.2"
+            app:layout_constraintBottom_toBottomOf="@id/starImageView"
             app:layout_constraintStart_toEndOf="@id/starImageView"
-            app:layout_constraintTop_toTopOf="@id/restaurantDeliveryTimeTextView" />
+            app:layout_constraintTop_toTopOf="@id/starImageView"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

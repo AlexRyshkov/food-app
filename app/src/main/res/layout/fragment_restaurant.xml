@@ -20,6 +20,7 @@
             app:layout_scrollFlags="noScroll">
 
             <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/backImageButton"
                 style="@style/button"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -42,8 +43,7 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -75,10 +75,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/restaurantNameTextView"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:spanCount="2"
                     tools:listitem="@layout/food_item" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

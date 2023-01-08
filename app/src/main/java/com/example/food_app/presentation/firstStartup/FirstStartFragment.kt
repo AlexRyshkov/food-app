@@ -1,6 +1,6 @@
-package com.example.food_app
+package com.example.food_app.presentation.firstStartup
 
-import CarouselRVAdapter
+import com.example.food_app.rvAdapters.CarouselRVAdapter
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.example.food_app.presentation.signUp.SignUpFragment
+import com.example.food_app.R
 import com.example.food_app.databinding.FragmentFirstStartBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import java.lang.Math.abs
@@ -69,7 +71,7 @@ class FirstStartFragment : Fragment() {
             if (viewPager.currentItem == CAROUSEL_ITEMS.size - 1
             ) {
                 val ft: FragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction()
-                val fragment = CreateAccountFragment()
+                val fragment = SignUpFragment()
                 ft.replace(R.id.navHostFragment, fragment)
                 ft.commit()
             } else {

@@ -1,11 +1,8 @@
 package com.example.food_app.presentation.restaurant
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.animelist.domain.GetRestaurantByIdUseCase
-import com.example.food_app.data.restaurant.Restaurant
+import com.example.food_app.data.restaurant.RestaurantWithFood
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,7 +12,8 @@ class RestaurantViewModel @Inject constructor(
     private val getRestaurantByIdUseCase: GetRestaurantByIdUseCase,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
-    private val _restaurant = MutableLiveData<Restaurant>()
+    private val _restaurant = MutableLiveData<RestaurantWithFood>()
+    val restaurant get():LiveData<RestaurantWithFood> = _restaurant
 
     init {
         val id: Long = requireNotNull(savedStateHandle["restaurantId"])
