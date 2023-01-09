@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
 
         binding.profileImageButton.setOnClickListener {
             homeViewModel.signOut()
-            findNavController().navigate(R.id.signInFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_authNavGraph)
         }
     }
 }

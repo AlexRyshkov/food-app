@@ -4,13 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.food_app.HomeFragment
 import com.example.food_app.R
 import com.example.food_app.databinding.FragmentSignUpBinding
+import com.example.food_app.presentation.main.replaceFragment
 import com.example.food_app.presentation.signIn.SignInFragment
+import com.example.food_app.presentation.signIn.UiState
+import com.example.food_app.validateEmailInputText
+import com.example.food_app.validatePasswordInputText
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,31 +37,48 @@ class SignUpFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val appProgressBar = requireActivity().findViewById<ProgressBar>(R.id.appProgressBar)
+        appProgressBar.bringToFront()
+
         binding.signInButton.setOnClickListener {
-            val ft: FragmentTransaction =
-                requireActivity().getSupportFragmentManager().beginTransaction()
-            val fragment = SignInFragment()
-            ft.replace(R.id.navHostFragment, fragment)
-            ft.commit()
+            findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
         }
 
-        signUpViewModel.signUpState.observe(viewLifecycleOwner) {
-            if (it == SignUpState.SUCCESS) {
-                navigateHome()
+        binding.emailEditText.addTextChangedListener {
+            validateEmailInputText(binding.emailEditText)
+        }
+
+        binding.passwordEditText.addTextChangedListener {
+            validatePasswordInputText(binding.passwordEditText)
+        }
+
+        signUpViewModel.uiState.observe(viewLifecycleOwner) {
+            when (it) {
+                is UiState.Loading -> {
+                    appProgressBar.visibility = View.VISIBLE
+                }
+                is UiState.Success -> {
+                    appProgressBar.visibility = View.GONE
+                    findNavController().navigate(R.id.action_authGraph_toHomeFragment)
+                }
+                is UiState.Error -> {
+                    appProgressBar.visibility = View.GONE
+                    binding.errorTextView.text = it.errorMessage
+                }
             }
         }
 
         binding.signUpButton.setOnClickListener {
-            signUpViewModel.trySignUp(
-                binding.emailEditText.text.toString(),
-                binding.passwordEditText.text.toString()
-            )
-        }
-    }
+            val isValidEmail = validateEmailInputText(binding.emailEditText)
+            val isValidPassword = validatePasswordInputText(binding.passwordEditText)
 
-    private fun navigateHome() {
-        val ft = requireActivity().supportFragmentManager.beginTransaction()
-        ft.replace(R.id.navHostFragment, HomeFragment())
-        ft.commit()
+            if (isValidEmail && isValidPassword) {
+                signUpViewModel.trySignUp(
+                    binding.emailEditText.text.toString(),
+                    binding.passwordEditText.text.toString()
+                )
+            }
+        }
     }
 }

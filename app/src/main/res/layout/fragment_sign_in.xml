@@ -11,14 +11,12 @@
         android:paddingVertical="28dp"
         tools:context=".presentation.main.MainActivity">
 
-
         <ImageView
             android:id="@+id/appIconImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_app"
             app:layout_constraintEnd_toEndOf="parent"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,57 +44,67 @@
             app:layout_constraintTop_toBottomOf="@+id/createAccountTextView" />
 
 
-        <TextView
-            android:id="@+id/emailTextView"
-            style="@style/body_regular"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailEditTextLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="23dp"
             android:layout_marginTop="50dp"
-            android:text="@string/email_address"
-            app:layout_constraintStart_toStartOf="@+id/emailEditText"
-            app:layout_constraintTop_toBottomOf="@+id/signInMessageTextView" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/emailEditText"
-            style="@style/editText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/emailTextView"
-            android:layout_marginTop="10dp"
-            android:hint="@string/enter_email"
+            android:hint="Email"
             android:minWidth="335dp"
+            android:text="alexryshkov72@gmail.com"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/signInMessageTextView">
 
-        <TextView
-            android:id="@+id/passwordTextView"
-            style="@style/body_regular"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailEditText"
+                style="@style/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordEditTextLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="23dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/password"
-            app:layout_constraintStart_toStartOf="@+id/passwordEditText"
-            app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/passwordEditText"
-            style="@style/editText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/emailTextView"
             android:layout_marginTop="10dp"
-
             android:hint="@string/enter_password"
             android:minWidth="335dp"
+            android:text="p@ssw0rd"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
             app:layout_constraintEnd_toEndOf="parent"
-
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/emailEditTextLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordEditText"
+                style="@style/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                app:errorEnabled="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/authErrorTextView"
+            style="@style/body_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:maxWidth="335dp"
+            app:layout_constraintEnd_toEndOf="@id/passwordEditTextLayout"
+            app:layout_constraintStart_toStartOf="@id/passwordEditTextLayout"
+            app:layout_constraintTop_toBottomOf="@id/passwordEditTextLayout"
+            tools:text="error message" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/signInButton"
@@ -107,20 +115,18 @@
             android:text="@string/login_to_my_account"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
-
+            app:layout_constraintTop_toBottomOf="@+id/authErrorTextView" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/signUpButton"
             style="@style/ghostButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:text="@string/create_an_account"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signInButton" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.food_app.R
-import com.example.food_app.presentation.firstStartup.CarouselItem
+import com.example.food_app.presentation.start.CarouselItem
 
 class CarouselRVAdapter(private val carouselDataList: List<CarouselItem>) :
     RecyclerView.Adapter<CarouselRVAdapter.CarouselItemViewHolder>() {

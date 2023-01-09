@@ -1,4 +1,4 @@
-package com.example.food_app.presentation.main
+package com.example.food_app.presentation.start
 
 import androidx.lifecycle.ViewModel
 import com.example.animelist.domain.IsUserSignInUseCase
@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val isUserSignInUseCase: IsUserSignInUseCase): ViewModel() {
+class StartViewModel @Inject constructor(private val isUserSignInUseCase: IsUserSignInUseCase): ViewModel() {
     fun isUserAuthorized(): Boolean {
         return isUserSignInUseCase()
     }

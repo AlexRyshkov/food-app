@@ -1,20 +1,21 @@
 package com.example.food_app.presentation.signIn
 
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.ProgressBar
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.food_app.R
 import com.example.food_app.databinding.FragmentSignInBinding
-import com.example.food_app.presentation.signUp.SignUpFragment
+import com.example.food_app.validateEmailInputText
+import com.example.food_app.validatePasswordInputText
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class SignInFragment : Fragment() {
@@ -33,31 +34,46 @@ class SignInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val navController = findNavController()
+
+        val appProgressBar = requireActivity().findViewById<ProgressBar>(R.id.appProgressBar)
+        appProgressBar.bringToFront()
 
         binding.signUpButton.setOnClickListener {
-            val ft: FragmentTransaction =
-                requireActivity().getSupportFragmentManager().beginTransaction()
-            val fragment = SignUpFragment()
-            ft.replace(R.id.navHostFragment, fragment)
-            ft.commit()
+            navController.navigate(R.id.action_signInFragment_to_signUpFragment)
         }
+
         binding.signInButton.setOnClickListener {
-            signInViewModel.trySignIn(
-                binding.emailEditText.text.toString(),
-                binding.passwordEditText.text.toString()
-            )
+            val isValidEmail = validateEmailInputText(binding.emailEditText)
+            val isValidPassword = validatePasswordInputText(binding.passwordEditText)
+
+            if (isValidEmail && isValidPassword) {
+                signInViewModel.trySignIn(
+                    binding.emailEditText.text.toString(),
+                    binding.passwordEditText.text.toString()
+                )
+            }
         }
 
+        binding.emailEditText.addTextChangedListener {
+            validateEmailInputText(binding.emailEditText)
+        }
 
+        binding.passwordEditText.addTextChangedListener {
+            validatePasswordInputText(binding.passwordEditText)
+        }
 
-
-        signInViewModel.signInState.observe(viewLifecycleOwner) {
-            if (it == SignInState.SUCCESS) {
-                Navigation.findNavController(view).navigate(R.id.homeFragment)
-            } else {
-                val toast =
-                    Toast.makeText(requireActivity().applicationContext, "Sign in error", 3000)
-                toast.show()
+        signInViewModel.uiState.observe(viewLifecycleOwner) {
+            when (it) {
+                is UiState.Loading -> {
+                    appProgressBar.visibility = View.VISIBLE
+                }
+                is UiState.Error -> {
+                    binding.authErrorTextView.text = it.errorMessage
+                }
+                is UiState.Success -> {
+                    findNavController().navigate(R.id.action_authGraph_toHomeFragment)
+                }
             }
         }
     }
