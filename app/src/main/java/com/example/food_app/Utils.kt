@@ -23,3 +23,15 @@ fun validatePasswordInputText(passwordEditText: TextInputEditText): Boolean {
     }
     return true
 }
+
+
+fun validateConfirmPasswordInputText(
+    password: String,
+    confirmPasswordEditText: TextInputEditText
+): Boolean {
+    if (!confirmPasswordEditText.text.toString().equals(password)) {
+        confirmPasswordEditText.error = "passwords do not match"
+        return false
+    }
+    return true
+}

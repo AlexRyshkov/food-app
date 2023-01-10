@@ -10,14 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.food_app.HomeFragment
-import com.example.food_app.R
+import com.example.food_app.*
 import com.example.food_app.databinding.FragmentSignUpBinding
 import com.example.food_app.presentation.main.replaceFragment
 import com.example.food_app.presentation.signIn.SignInFragment
 import com.example.food_app.presentation.signIn.UiState
-import com.example.food_app.validateEmailInputText
-import com.example.food_app.validatePasswordInputText
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -53,6 +50,13 @@ class SignUpFragment : Fragment() {
             validatePasswordInputText(binding.passwordEditText)
         }
 
+        binding.confirmPasswordEditText.addTextChangedListener {
+            validateConfirmPasswordInputText(
+                binding.passwordEditText.text.toString(),
+                binding.confirmPasswordEditText
+            )
+        }
+
         signUpViewModel.uiState.observe(viewLifecycleOwner) {
             when (it) {
                 is UiState.Loading -> {
@@ -72,8 +76,12 @@ class SignUpFragment : Fragment() {
         binding.signUpButton.setOnClickListener {
             val isValidEmail = validateEmailInputText(binding.emailEditText)
             val isValidPassword = validatePasswordInputText(binding.passwordEditText)
+            val arePasswordsMatch = validateConfirmPasswordInputText(
+                binding.passwordEditText.text.toString(),
+                binding.confirmPasswordEditText
+            )
 
-            if (isValidEmail && isValidPassword) {
+            if (isValidEmail && isValidPassword && arePasswordsMatch) {
                 signUpViewModel.trySignUp(
                     binding.emailEditText.text.toString(),
                     binding.passwordEditText.text.toString()

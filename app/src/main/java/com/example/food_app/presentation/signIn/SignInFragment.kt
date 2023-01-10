@@ -69,9 +69,11 @@ class SignInFragment : Fragment() {
                     appProgressBar.visibility = View.VISIBLE
                 }
                 is UiState.Error -> {
+                    appProgressBar.visibility = View.GONE
                     binding.authErrorTextView.text = it.errorMessage
                 }
                 is UiState.Success -> {
+                    appProgressBar.visibility = View.GONE
                     findNavController().navigate(R.id.action_authGraph_toHomeFragment)
                 }
             }
